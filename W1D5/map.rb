@@ -22,12 +22,29 @@ class Map
 
 
   def get(key)
+    return nil if !my_map.include?(key)
+    my_map.each do |el|
+      el.each.with_index do |e, i|
+        return el[i + 1] if el[i] == key
+      end
+    end
   end
 
   def delete(key)
+    my_map.each do |el|
+      el.each.with_index do |e, i|
+        if my_map[i] == e
+          my_map.delete(my_map(i))
+          my_map.delete(my_map(i + 1))
+        end
+      end
+    end
   end
 
   def show
-
+    copy = []
+    my_map.map { |el| copy << el }
+    copy
   end
+
 end
